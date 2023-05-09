@@ -1,15 +1,8 @@
-"""
-Django settings for myproject project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/3.1/ref/settings/
-"""
-
 import os
 import json
 import sys
 from django.core.exceptions import ImproperlyConfigured
-from myproject.apps.core.versioning import get_git_changeset_timestamp
+from src.apps.core.versioning import get_git_changeset_timestamp
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -55,14 +48,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # third-party
-    # ...
+    "rest_framework",
+    "corsheaders",
     # local
-    # ...
+    "src.apps.accounts.apps.AccountsConfig",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -71,12 +66,12 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
 ]
 
-ROOT_URLCONF = 'myproject.urls'
+ROOT_URLCONF = 'src.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'myproject', 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'src', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,7 +84,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'myproject.wsgi.application'
+WSGI_APPLICATION = 'src.wsgi.application'
 
 
 # Database
@@ -124,6 +119,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# JWT 
+JWT_SECRET_KEY=get_secret("JWT_SECRET_KEY")
+
+# CORS HEADER 
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -146,7 +146,7 @@ LOCALE_PATHS = [
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'myproject', 'site_static'),
+    os.path.join(BASE_DIR, 'src', 'site_static'),
 ]
 
 timestamp = get_git_changeset_timestamp(BASE_DIR)
