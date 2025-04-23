@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     "src.apps.accounts.apps.AccountsConfig",
 ]
 
+AUTH_USER_MODEL = "accounts.User"
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -98,7 +100,8 @@ DATABASES = {
         'PASSWORD': get_secret('DATABASE_PASSWORD'),
         'HOST': 'localhost',
         'PORT': '5432',
-    }}
+    }
+}
 
 
 # Password validation
@@ -126,8 +129,6 @@ JWT_SECRET_KEY=get_secret("JWT_SECRET_KEY")
 CORS_ALLOW_ALL_ORIGINS = True
 
 # Internationalization
-# https://docs.djangoproject.com/en/3.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -160,3 +161,5 @@ EMAIL_HOST = get_secret("EMAIL_HOST")
 EMAIL_PORT = get_secret("EMAIL_PORT")
 EMAIL_HOST_USER = get_secret("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = get_secret("EMAIL_HOST_PASSWORD")
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
