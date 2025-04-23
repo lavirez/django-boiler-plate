@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'src.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -105,7 +105,7 @@ DATABASES = {
 
 
 # Password validation
-# https://docs.djangoproject.com/en/3.1/topics/auth/passwords/#password-validation
+# https://docs.djangoproject.com/en/5.2/topics/auth/passwords/#password-validation
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -144,7 +144,7 @@ LOCALE_PATHS = [
 ]
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
+# https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'src', 'site_static'),
