@@ -1,2 +1,2 @@
 -r _base.txt
-coverage==4.5.3
+coverage==7.8.0
